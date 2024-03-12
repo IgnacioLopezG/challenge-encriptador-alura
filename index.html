@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <title>Encriptador</title>
+</head>
+<body>
+    <header>
+        <img class="logo" src="imagenes/Logo.png" alt="logo alura">
+    </header>
+    <main>
+        <section class="encriptar-texto">
+            <input class="texto-encriptar" type="text" placeholder="Escribe tu texto aquí" 
+            onfocus="this.placeholder=''" 
+            onblur="this.placeholder='Escribe tu texto aquí'"/>
+            <div>
+                <h6 class="informacion">Solo letras minúsculas y sin acentos</h6>
+            </div>
+            <div class="botones">
+                <button class="btn-encriptar" onclick="btnEncriptar()">Encriptar</button>
+                <button class="btn-desencriptar" onclick="btnDesencriptar()">Desencriptar</button>
+            </div>
+        </section>
+        <section>
+            <textarea id="areatexto" class="mensaje" cols="20" rows="10"></textarea>
+            <div>
+                <button id="copiar" class="btn-copiar" onclick="copiarTexto('areatexto', 'copiar')">Copiar</button>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+<script>
+    function copiarTexto(areatexto, copiar) {
+  // Obtener el elemento del área de texto
+  const areaTexto = document.getElementById(areatexto);
+
+  // Obtener el texto del área de texto
+  const texto = areaTexto.value;
+
+  // Seleccionar el texto
+  areaTexto.select();
+
+  // Copiar el texto al portapapeles
+  navigator.clipboard.writeText(texto).then(() => {
+    // Mostrar mensaje de éxito
+    const boton = document.getElementById(copiar);
+    boton.textContent = "Copiado!";
+    setTimeout(() => {
+      boton.textContent = "Copiar";
+    }, 2000);
+  });
+}
+
+</script>
+</html>
